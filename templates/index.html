@@ -1,0 +1,10 @@
+{% extends "base_section.html" %}
+{% import "macros.html" as macros %}
+{% block content %}
+{% if section.content %}<section class="intro">{{ section.content | safe }}</section>{% endif %}
+<h1 class="home-title">{{ config.title }}</h1>
+<section class="posts" aria-labelledby="posts-heading">
+  <h2 id="posts-heading">Latest</h2>
+  {{ macros::post_list(posts=section.pages) }}
+</section>
+{% endblock content %}

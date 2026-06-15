@@ -1,0 +1,29 @@
+# Zola configuration — https://www.getzola.org/documentation/getting-started/configuration/
+
+base_url = "https://remyl.eu"
+
+title = "remyl.eu"
+description = "The personal blog of Remyl."
+
+# Default language (English). French could later live under [languages.fr] → /fr/
+default_language = "en"
+
+# Atom feed: light, decentralised, no algorithm
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+# Build options
+compile_sass = true
+build_search_index = false
+minify_html = true
+
+taxonomies = [
+  { name = "tags", feed = true },
+]
+
+[markdown]
+# Typographic niceties: smart quotes, dashes…
+smart_punctuation = true
+
+[extra]
+author = "Remyl"

@@ -1,0 +1,24 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | json_encode | safe }},
+  "description": {{ page.description | default(value=config.description) | json_encode | safe }},
+  "url": {{ page.permalink | json_encode | safe }},
+  "mainEntityOfPage": { "@type": "WebPage", "@id": {{ page.permalink | json_encode | safe }} },
+{%- if page.date %}
+  "datePublished": {{ page.date | json_encode | safe }},
+{%- endif %}
+{%- if page.updated %}
+  "dateModified": {{ page.updated | json_encode | safe }},
+{%- elif page.date %}
+  "dateModified": {{ page.date | json_encode | safe }},
+{%- endif %}
+{%- if page.taxonomies.tags is defined %}
+  "keywords": {{ page.taxonomies.tags | join(sep=", ") | json_encode | safe }},
+{%- endif %}
+  "inLanguage": {{ config.default_language | json_encode | safe }},
+  "author": { "@type": "Person", "name": {{ config.extra.author | json_encode | safe }} },
+  "publisher": { "@type": "Person", "name": {{ config.extra.author | json_encode | safe }} }
+}
+</script>

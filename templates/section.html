@@ -1,0 +1,7 @@
+{% extends "base_section.html" %}
+{% import "macros.html" as macros %}
+{% block content %}
+<h1>{{ section.title }}</h1>
+{%- if section.content %}{{ section.content | safe }}{% endif %}
+{{ macros::post_list(posts=section.pages) }}
+{% endblock content %}

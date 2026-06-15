@@ -1,0 +1,11 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ config.title | json_encode | safe }},
+  "url": {{ config.base_url | json_encode | safe }},
+  "description": {{ config.description | json_encode | safe }},
+  "inLanguage": {{ config.default_language | json_encode | safe }},
+  "author": { "@type": "Person", "name": {{ config.extra.author | json_encode | safe }} }
+}
+</script>

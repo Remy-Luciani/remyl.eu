@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block seo %}
+{%- set meta_title = page.title -%}
+{%- set meta_desc = page.description | default(value=config.description) -%}
+{%- set canonical = page.permalink -%}
+{%- set og_type = "article" -%}
+{% include "partials/seo_meta.html" %}
+{% include "partials/og_article.html" %}
+{% endblock seo %}
+
+{% block structured_data %}{% include "partials/schema_article.html" %}{% endblock structured_data %}

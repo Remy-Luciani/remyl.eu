@@ -1,0 +1,9 @@
+<title>{% if meta_title and meta_title != config.title %}{{ meta_title }} — {{ config.title }}{% else %}{{ config.title }}{% endif %}</title>
+<meta name="description" content="{{ meta_desc }}">
+<link rel="canonical" href="{{ canonical | safe }}">
+<meta property="og:site_name" content="{{ config.title }}">
+<meta property="og:title" content="{% if meta_title %}{{ meta_title }}{% else %}{{ config.title }}{% endif %}">
+<meta property="og:description" content="{{ meta_desc }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:url" content="{{ canonical | safe }}">
+<meta property="og:locale" content="{{ lang | default(value=config.default_language) }}">

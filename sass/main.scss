@@ -1,0 +1,122 @@
+// remyl.eu — minimal reset + readability base.
+// Spirit: bettermotherfuckingwebsite.com — semantic HTML does the work;
+// CSS only sets line length, rhythm, and the functional a11y bits.
+// Deliberately identity-free: no colours, fonts, or component styling yet.
+// The visual identity is the theme's job (later) — kept out on purpose so
+// this doesn't settle into a generic default look.
+
+// ----------------------------------------------------------------------
+// Variables
+// ----------------------------------------------------------------------
+
+// Layout
+$measure:              42rem;   // readable line length (~70ch)
+$page-padding-block:   2rem;
+$page-padding-inline:  1.25rem;
+
+// Typography
+$font-family-base:     system-ui, sans-serif; // no web-font request = faster
+$font-size-base:       1.125rem;               // ~18px
+$line-height-base:     1.6;
+$line-height-heading:  1.2;
+
+// Vertical rhythm
+$flow-space:           1rem;
+
+// Accessibility
+$focus-outline-width:      3px;
+$focus-outline-offset:     2px;
+$skip-link-offset:         $page-padding-inline;
+$reduced-motion-duration:  0.01ms;
+
+// ----------------------------------------------------------------------
+// Reset
+// ----------------------------------------------------------------------
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  // No surprise text zoom when rotating on iOS.
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  max-width: $measure;
+  margin-inline: auto;
+  padding: $page-padding-block $page-padding-inline;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+// Tighter, balanced headings.
+h1, h2, h3, h4 {
+  line-height: $line-height-heading;
+  text-wrap: balance;
+}
+
+// Flow spacing without per-element rules; :where() keeps specificity at 0.
+:where(p, ul, ol, blockquote, pre, figure, table) {
+  margin-block: $flow-space;
+}
+
+// Media never overflows its column (key on small screens).
+img, picture, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+// Long words / URLs wrap instead of blowing out a narrow layout.
+p, li, h1, h2, h3, h4 {
+  overflow-wrap: break-word;
+}
+
+// Code scrolls instead of overflowing.
+pre {
+  overflow-x: auto;
+}
+
+// Form controls inherit typography.
+input, button, textarea, select {
+  font: inherit;
+}
+
+// ----------------------------------------------------------------------
+// Accessibility (functional, not decorative)
+// ----------------------------------------------------------------------
+
+:root {
+  // Honour the OS light/dark preference.
+  color-scheme: light dark;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+
+  &:focus {
+    left: $skip-link-offset;
+    top: $skip-link-offset;
+  }
+}
+
+:focus-visible {
+  outline: $focus-outline-width solid;
+  outline-offset: $focus-outline-offset;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: $reduced-motion-duration !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: $reduced-motion-duration !important;
+    scroll-behavior: auto !important;
+  }
+}

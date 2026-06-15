@@ -1,0 +1,8 @@
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" role="banner">
+  <a href="{{ get_url(path='/', trailing_slash=true) | safe }}" class="site-title"{% if current_path is defined and current_path == "/" %} aria-current="page"{% endif %}>{{ config.title }}</a>
+  <nav aria-label="Primary">
+    <a href="{{ get_url(path='/about/', trailing_slash=true) | safe }}"{% if current_path is defined and current_path is starting_with("/about") %} aria-current="page"{% endif %}>About</a>
+    <a href="{{ get_url(path='atom.xml') | safe }}" aria-label="Atom feed">Feed</a>
+  </nav>
+</header>

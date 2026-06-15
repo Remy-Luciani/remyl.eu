@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block seo %}
+{%- set meta_title = "Tags" -%}
+{%- set meta_desc = "All tags on " ~ config.title -%}
+{%- set canonical = current_url | default(value=config.base_url) -%}
+{%- set og_type = "website" -%}
+{% include "partials/seo_meta.html" %}
+{% endblock seo %}
+
+{% block structured_data %}{% include "partials/schema_website.html" %}{% endblock structured_data %}
+
+{% block content %}
+<h1>Tags</h1>
+<ul class="tag-list">
+  {% for term in terms %}
+  <li><a href="{{ term.permalink | safe }}">{{ term.name }}</a> <span class="count">({{ term.pages | length }})</span></li>
+  {% endfor %}
+</ul>
+{% endblock content %}

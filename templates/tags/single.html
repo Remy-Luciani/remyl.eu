@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block seo %}
+{%- set meta_title = "Tag: " ~ term.name -%}
+{%- set meta_desc = "Posts tagged " ~ term.name ~ " on " ~ config.title -%}
+{%- set canonical = term.permalink -%}
+{%- set og_type = "website" -%}
+{% include "partials/seo_meta.html" %}
+{% endblock seo %}
+
+{% block structured_data %}{% include "partials/schema_website.html" %}{% endblock structured_data %}
+
+{% block content %}
+<h1>Posts tagged “{{ term.name }}”</h1>
+{{ macros::post_list(posts=term.pages) }}
+{% endblock content %}

@@ -1,0 +1,12 @@
+{# Reusable, context-free building blocks — called like functions with explicit args. #}
+
+{% macro post_list(posts) %}
+<ul class="post-list">
+  {% for post in posts %}
+  <li>
+    <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
+    {% if post.date %}<time datetime="{{ post.date }}">{{ post.date | date(format="%d %B %Y") }}</time>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro post_list %}
